@@ -25,11 +25,15 @@ public class Emprestimo {
     private LocalDate dataRetirada;
     private LocalDate dataDevolucao;
     private LocalDate dataLimite;
+
     @ManyToOne
+    @JoinColumn(name = "cpf_usuario", nullable = false)
     private Usuario usuario;
     @ManyToOne
+    @JoinColumn(name = "id_livro", nullable = false)
     private Livro livro;
     @ManyToOne
+    @JoinColumn(name = "id_bibliotecario", nullable = false)
     private Bibliotecario bibliotecario;
 
     public Emprestimo(LocalDate dataRetirada, LocalDate dataLimite) {

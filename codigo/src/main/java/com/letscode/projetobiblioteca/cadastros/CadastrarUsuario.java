@@ -16,7 +16,12 @@ public class CadastrarUsuario implements com.letscode.projetobiblioteca.interfac
         System.out.println(this.usuario.toString());
         // TODO
         // "insert into usuario values(usuario.getCpf(), usuario.getNome(), usuario.getEmail(), usuario.getCelular(), usuario.getsuspensao(), usuario.getNumeroLivro());"
-        this.usuarioRepository.save(usuario);
+        if(!usuarioRepository.existsById(usuario.getCpf())){
+            this.usuarioRepository.save(usuario);
+        }
+        else{
+            System.out.println("Já cadastrado");
+        }
     }
 
     @Override

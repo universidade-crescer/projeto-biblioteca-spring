@@ -11,11 +11,19 @@ public class CadastrarLivro implements com.letscode.projetobiblioteca.interfaces
     private Livro livro;
     private final LivroRepository livroRepository;
 
+
+
     @Override
     public void criacaoLivro() {
         System.out.println(this.livro.toString());
         // TODO banco de dados
         // "insert into livro values(livro.getId(), livro.getNome(), livro.getAutor(), livro.getAno(), livro.getEditora(), livro.getQuantidade())"
+        if(!livroRepository.existsById(livro.getId())){
+            this.livroRepository.save(livro);
+        }
+        else{
+            System.out.println("Já cadastrado");
+        }
     }
 
     @Override

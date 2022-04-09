@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class RemoverUsuario implements com.letscode.projetobiblioteca.interfaces.Menus.RemoveUsuario, com.letscode.projetobiblioteca.interfaces.Menus.DigitarDados {
+
+    private String cpfUsuario;
     private Usuario usuario;
     private final UsuarioRepository usuarioRepository;
 
@@ -16,11 +18,19 @@ public class RemoverUsuario implements com.letscode.projetobiblioteca.interfaces
     public void remover(){
         // Query do banco de dados
         // "delete from usuario where cpf = '" + this.usuario.getCpf() + "';"
+
+        if(usuarioRepository.existsById(usuario.getCpf())){
+            this.usuarioRepository.deleteById(cpfUsuario);
+        }
+        else{
+            System.out.println("Usuário Inexistente");
+        }
+
     }
 
     @Override
     public void digitarDados(){
         Consulta consulta = new Consulta();
-        this.usuario = consulta.procurarUsuario();
+        this.usuario.setCpf(consulta.procurarCpf());
     }
 }
