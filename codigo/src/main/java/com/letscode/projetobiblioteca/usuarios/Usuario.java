@@ -1,4 +1,4 @@
-package com.biblioteca.src.usuarios;
+package com.letscode.projetobiblioteca.usuarios;
 
 public class Usuario {
     private String cpf;

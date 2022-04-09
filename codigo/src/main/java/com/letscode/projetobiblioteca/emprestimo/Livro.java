@@ -1,4 +1,4 @@
-package com.biblioteca.src.emprestimo;
+package com.letscode.projetobiblioteca.emprestimo;
 
 public class Livro {
     private Integer id;

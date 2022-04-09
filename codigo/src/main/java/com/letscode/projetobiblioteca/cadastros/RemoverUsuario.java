@@ -1,9 +1,10 @@
-package src.cadastros;
+package com.letscode.projetobiblioteca.cadastros;
 
-import src.consultas.Consulta;
-import src.usuarios.Usuario;
+import com.letscode.projetobiblioteca.consultas.Consulta;
+import com.letscode.projetobiblioteca.usuarios.Usuario;
 
-public class RemoverUsuario implements src.interfaces.Menus.RemoveUsuario, src.interfaces.Menus.DigitarDados {
+
+public class RemoverUsuario implements com.letscode.projetobiblioteca.interfaces.Menus.RemoveUsuario, com.letscode.projetobiblioteca.interfaces.Menus.DigitarDados {
     Usuario usuario;
     @Override
     public void remover(){

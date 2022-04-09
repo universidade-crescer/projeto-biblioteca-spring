@@ -1,6 +1,7 @@
-package com.biblioteca.src.interfaces;
+package com.letscode.projetobiblioteca.interfaces;
 
-import com.biblioteca.src.emprestimo.Livro;
+
+import com.letscode.projetobiblioteca.emprestimo.Livro;
 
 public interface Menus {
 

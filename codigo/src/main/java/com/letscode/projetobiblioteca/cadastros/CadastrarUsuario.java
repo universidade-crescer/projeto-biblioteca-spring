@@ -1,8 +1,8 @@
-package src.cadastros;
+package com.letscode.projetobiblioteca.cadastros;
 
-import src.usuarios.Usuario;
+import com.letscode.projetobiblioteca.usuarios.Usuario;
 
-public class CadastrarUsuario implements src.interfaces.Menus.MenuCadastrarUsuario, src.interfaces.Menus.DigitarDados{
+public class CadastrarUsuario implements com.letscode.projetobiblioteca.interfaces.Menus.MenuCadastrarUsuario,com.letscode.projetobiblioteca.interfaces.Menus.DigitarDados{
     private Usuario usuario;
 
     @Override
