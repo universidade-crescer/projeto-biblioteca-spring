@@ -1,4 +1,6 @@
-package com.projeto.backup.codigo.interfaces;
+package com.biblioteca.src.interfaces;
+
+import com.biblioteca.src.emprestimo.Livro;
 
 public interface Menus {
 
@@ -15,7 +17,7 @@ public interface Menus {
     }
 
     interface MenuConsultarLivro {
-        void procurarLivro();
+        Livro procurarLivro();
     }
 
     interface MenuEmprestimo {
@@ -24,5 +26,9 @@ public interface Menus {
 
     interface Devolucao {
         void devolver();
+    }
+
+    interface RemoveUsuario {
+        void remover();
     }
 }
