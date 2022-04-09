@@ -5,20 +5,32 @@ import java.time.LocalDate;
 
 import com.letscode.projetobiblioteca.usuarios.Bibliotecario;
 import com.letscode.projetobiblioteca.usuarios.Usuario;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+import javax.persistence.*;
 
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@Entity
 public class Emprestimo {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDate dataRetirada;
     private LocalDate dataDevolucao;
     private LocalDate dataLimite;
+    @ManyToOne
     private Usuario usuario;
+    @ManyToOne
     private Livro livro;
+    @ManyToOne
     private Bibliotecario bibliotecario;
-
-    public Emprestimo() {
-    }
 
     public Emprestimo(LocalDate dataRetirada, LocalDate dataLimite) {
         this.id = 0;
@@ -40,21 +52,6 @@ public class Emprestimo {
         this.livro = livro;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public LocalDate getDataRetirada() {
-        return dataRetirada;
-    }
-
-    public void setDataRetirada(LocalDate dataRetirada) {
-        this.dataRetirada = dataRetirada;
-    }
 
     public LocalDate getDataDevolucao() {
         return dataDevolucao;
@@ -62,14 +59,6 @@ public class Emprestimo {
 
     public void setDataDevolucao(LocalDate dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
-    }
-
-    public LocalDate getDataLimite() {
-        return dataLimite;
-    }
-
-    public void setDataLimite(LocalDate dataLimite) {
-        this.dataLimite = dataLimite;
     }
 
     public Usuario getUsuario() {

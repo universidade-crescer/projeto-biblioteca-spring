@@ -1,15 +1,29 @@
 package com.letscode.projetobiblioteca.emprestimo;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@Entity
 public class Livro {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private Integer anoPublicacao;
     private String autor;
     private String editora;
     private Integer quantidade;
-
-    public Livro() {
-    }
 
     public Livro(String nome, Integer anoPublicacao, String autor, String editora, Integer quantidade) {
         this.id = -1;
@@ -42,43 +56,4 @@ public class Livro {
         this.editora = editora;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Integer getAnoPublicacao() {
-        return anoPublicacao;
-    }
-
-    public void setAnoPublicacao(Integer anoPublicacao) {
-        this.anoPublicacao = anoPublicacao;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public String getEditora() {
-        return editora;
-    }
-
-    public void setEditora(String editora) {
-        this.editora = editora;
-    }
 }
