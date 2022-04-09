@@ -1,9 +1,15 @@
 package com.letscode.projetobiblioteca.cadastros;
 
 import com.letscode.projetobiblioteca.emprestimo.Livro;
+import com.letscode.projetobiblioteca.interfaces.LivroRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@RequiredArgsConstructor
 public class CadastrarLivro implements com.letscode.projetobiblioteca.interfaces.Menus.MenuCadastrarLivro, com.letscode.projetobiblioteca.interfaces.Menus.DigitarDados {
     private Livro livro;
+    private final LivroRepository livroRepository;
 
     @Override
     public void criacaoLivro() {

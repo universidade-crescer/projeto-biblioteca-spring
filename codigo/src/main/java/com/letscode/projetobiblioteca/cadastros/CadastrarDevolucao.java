@@ -3,9 +3,16 @@ package com.letscode.projetobiblioteca.cadastros;
 import java.time.LocalDate;
 
 import com.letscode.projetobiblioteca.emprestimo.Emprestimo;
+import com.letscode.projetobiblioteca.interfaces.EmprestimoRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@RequiredArgsConstructor
 public class CadastrarDevolucao implements com.letscode.projetobiblioteca.interfaces.Menus.Devolucao, com.letscode.projetobiblioteca.interfaces.Menus.DigitarDados {
-    Emprestimo emprestimo;
+    private Emprestimo emprestimo;
+    private  final EmprestimoRepository emprestimoRepository;
+
     @Override
     public void devolver(){
         emprestimo.setDataDevolucao(LocalDate.now());

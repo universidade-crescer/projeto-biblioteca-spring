@@ -3,18 +3,24 @@ package com.letscode.projetobiblioteca.cadastros;
 import com.letscode.projetobiblioteca.consultas.Consulta;
 import com.letscode.projetobiblioteca.emprestimo.Emprestimo;
 import com.letscode.projetobiblioteca.emprestimo.Livro;
+import com.letscode.projetobiblioteca.interfaces.EmprestimoRepository;
 import com.letscode.projetobiblioteca.usuarios.Bibliotecario;
 import com.letscode.projetobiblioteca.usuarios.Usuario;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
 import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
-
+@Service
+@RequiredArgsConstructor
 public class CadastrarEmprestimo implements com.letscode.projetobiblioteca.interfaces.Menus.MenuEmprestimo, com.letscode.projetobiblioteca.interfaces.Menus.DigitarDados {
     private Emprestimo emprestimo;
+    private  final EmprestimoRepository emprestimoRepository;
 
-    
+
+
     public void criacaoEmprestimo() {
         // TODO
         // "insert into emprestimo values(emprestimo.getId(), emprestimo.getIdLivro(), emprestimo.getCpf(), emprestimo.getIdBibliotecario(), emprestimo.getDataRetirada(), emprestimo.getDataDevolucao(), emprestimo.getDataLimite())"

@@ -1,11 +1,17 @@
 package com.letscode.projetobiblioteca.cadastros;
 
 import com.letscode.projetobiblioteca.consultas.Consulta;
+import com.letscode.projetobiblioteca.interfaces.UsuarioRepository;
 import com.letscode.projetobiblioteca.usuarios.Usuario;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-
+@Service
+@RequiredArgsConstructor
 public class RemoverUsuario implements com.letscode.projetobiblioteca.interfaces.Menus.RemoveUsuario, com.letscode.projetobiblioteca.interfaces.Menus.DigitarDados {
-    Usuario usuario;
+    private Usuario usuario;
+    private final UsuarioRepository usuarioRepository;
+
     @Override
     public void remover(){
         // Query do banco de dados
