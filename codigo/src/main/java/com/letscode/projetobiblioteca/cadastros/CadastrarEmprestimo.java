@@ -33,14 +33,16 @@ public class CadastrarEmprestimo implements com.letscode.projetobiblioteca.inter
 
     public void criacaoEmprestimo() {
         emprestar();
-        emprestimoRepository.save(emprestimo);
+        // TODO: 10/04/2022 Arrumar this.emprestimoRepository.save
+//        this.emprestimoRepository.save(emprestimo.getId(), emprestimo.getLivro().getNome(), emprestimo.getUsuario().getCpf(),emprestimo.getBibliotecario().getId(),
+//                emprestimo.getDataRetirada(), emprestimo.getDataDevolucao(), emprestimo.getDataLimite());
         livroRepository.diminuirQuantidade(livro.getNome());
     }
 
     @Override
     public void emprestar(){
         LocalDate hoje = LocalDate.now();
-        this.emprestimo = new Emprestimo(emprestimo.getId(),livro,usuario,bibliotecario,hoje,null,hoje.plusDays(7));
+        this.emprestimo = new Emprestimo(livro,usuario,bibliotecario,hoje,null,hoje.plusDays(7));
     }
 
     @Override
@@ -51,14 +53,14 @@ public class CadastrarEmprestimo implements com.letscode.projetobiblioteca.inter
         System.out.println("Digite o nome do Bibliotecário: ");
         String nomeBibliotecario = s.nextLine();
 
-        bibliotecario = new Bibliotecario(bibliotecarioRepository.findBibliotecarioId(nomeBibliotecario),
-                bibliotecarioRepository.findBibliotecarioEmail(nomeBibliotecario));
+        this.bibliotecario = new Bibliotecario(this.bibliotecarioRepository.findBibliotecarioId(nomeBibliotecario),
+                this.bibliotecarioRepository.findBibliotecarioEmail(nomeBibliotecario));
 
         System.out.println("Digite o CPF do usuário: ");
         String cpfUsuario = s.nextLine();
 
-        if(usuarioRepository.existsById(cpfUsuario)){
-            usuario.setCpf(cpfUsuario);
+        if(this.usuarioRepository.existsById(cpfUsuario)){
+            this.usuario.setCpf(cpfUsuario);
 
             if(usuarioRepository.findSupensao(cpfUsuario)==0){
                 System.out.println("Nome do livro: ");

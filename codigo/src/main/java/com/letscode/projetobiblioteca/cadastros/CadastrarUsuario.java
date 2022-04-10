@@ -14,8 +14,6 @@ public class CadastrarUsuario implements com.letscode.projetobiblioteca.interfac
     @Override
     public void criacaoConta() {
         System.out.println(this.usuario.toString());
-        // TODO
-        // "insert into usuario values(usuario.getCpf(), usuario.getNome(), usuario.getEmail(), usuario.getCelular(), usuario.getsuspensao(), usuario.getNumeroLivro());"
         if(!usuarioRepository.existsById(usuario.getCpf())){
             this.usuarioRepository.save(usuario);
         }

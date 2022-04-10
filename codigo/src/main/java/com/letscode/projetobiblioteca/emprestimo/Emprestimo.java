@@ -18,6 +18,7 @@ import javax.persistence.*;
 public class Emprestimo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @ManyToOne
     @JoinColumn(name = "id_livro")
@@ -32,21 +33,13 @@ public class Emprestimo {
     private LocalDate dataDevolucao;
     private LocalDate dataLimite;
 
-
-
-
-
-//    public Emprestimo(LocalDate dataRetirada, LocalDate dataLimite) {
-//        this.id = 0;
-//        this.dataRetirada = dataRetirada;
-//        this.dataLimite = dataLimite;
-//        this.dataDevolucao = null;
-//        this.bibliotecario = null;
-//        this.usuario = null;
-//        this.livro = null;
-//    }
-
-
-
+    public Emprestimo(Livro livro, Usuario usuario, Bibliotecario bibliotecario, LocalDate dataRetirada, LocalDate dataDevolucao, LocalDate dataLimite) {
+        this.livro = livro;
+        this.usuario = usuario;
+        this.bibliotecario = bibliotecario;
+        this.dataRetirada = dataRetirada;
+        this.dataDevolucao = dataDevolucao;
+        this.dataLimite = dataLimite;
+    }
 
 }

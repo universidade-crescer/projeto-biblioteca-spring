@@ -1,10 +1,5 @@
 package com.letscode.projetobiblioteca.interfaces;
 
-
-import com.letscode.projetobiblioteca.emprestimo.Livro;
-
-import java.util.List;
-
 public interface Menus {
 
     interface DigitarDados {

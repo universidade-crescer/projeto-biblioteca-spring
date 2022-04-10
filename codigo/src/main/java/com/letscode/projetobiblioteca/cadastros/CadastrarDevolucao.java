@@ -8,6 +8,7 @@ import com.letscode.projetobiblioteca.emprestimo.Livro;
 import com.letscode.projetobiblioteca.interfaces.EmprestimoRepository;
 import com.letscode.projetobiblioteca.interfaces.LivroRepository;
 import com.letscode.projetobiblioteca.interfaces.UsuarioRepository;
+import com.letscode.projetobiblioteca.usuarios.Bibliotecario;
 import com.letscode.projetobiblioteca.usuarios.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CadastrarDevolucao implements com.letscode.projetobiblioteca.interfaces.Menus.Devolucao, com.letscode.projetobiblioteca.interfaces.Menus.DigitarDados {
     private Emprestimo emprestimo;
+    private Bibliotecario bibliotecario;
     private Usuario usuario;
-    private Livro livr;
+    private Livro livro;
 
     private final EmprestimoRepository emprestimoRepository;
     private final UsuarioRepository usuarioRepository;
@@ -27,22 +29,20 @@ public class CadastrarDevolucao implements com.letscode.projetobiblioteca.interf
 
     @Override
     public void devolver(){
-        emprestimo.setDataDevolucao(LocalDate.now());
+        livro = new Livro(emprestimoRepository.devolveNomeLivro(usuario.getCpf()));
+        this.emprestimo = new Emprestimo(livro, usuario, new Bibliotecario(),
+                emprestimoRepository.devolveDataRetirada(usuario.getCpf()),LocalDate.now(), emprestimoRepository.devolveDataLimite(usuario.getCpf()));
+
         if(emprestimo.getDataDevolucao().isAfter(emprestimo.getDataLimite())){
-            // Query no banco para bloquear o usuário
-            // "update usuario set suspensao = TRUE where cpf = '" + emprestimo.getUsuario().getCpf() + "';"
-
-        }else{
-
+            usuarioRepository.aplicarSuspensao(usuario.getCpf());
         }
-        // Atualiza no banco de dados (emprestimo)
-        // "update emprestimo set data_devolucao = '" + emprestimo.getDataDevolucao() + "' where id = " + emprestimo.getId() + ";"
-
+        livroRepository.aumentarQuantidade(livro.getNome());
+        emprestimoRepository.devolucao(usuario.getCpf());
     }
 
     @Override
     public void digitarDados(){
-        Usuario usuario = new Usuario();
+        usuario = new Usuario();
 
         System.out.println("Digite o CPF do usuário: ");
         String cpfUsuario = s.nextLine();

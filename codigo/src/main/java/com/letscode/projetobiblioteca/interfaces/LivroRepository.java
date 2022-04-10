@@ -17,8 +17,12 @@ public interface LivroRepository extends JpaRepository<Livro, String> {
     Integer findQuantidade(String nome);
 
     @Modifying
-    @Query("update Livro l set l.quantidade = l.quantidade-1 where l.nome=?1 ")
+    @Query("update Livro l set l.quantidade = l.quantidade-1 where l.nome=?1")
     void diminuirQuantidade(String nome);
+
+    @Modifying
+    @Query("update Livro l set l.quantidade = l.quantidade+1 where l.nome=?1")
+    void aumentarQuantidade(String nome);
 
     @Query("select l.nome from Livro l where l.nome=?1")
     String pegaNome(String nome);

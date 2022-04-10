@@ -29,4 +29,7 @@ public class Livro {
     }
 
 
+    public Livro(String devolveNomeLivro) {
+        this.nome = devolveNomeLivro;
+    }
 }

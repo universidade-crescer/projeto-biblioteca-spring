@@ -1,8 +1,6 @@
 package com.letscode.projetobiblioteca.cadastros;
 
-import com.letscode.projetobiblioteca.consultas.Consulta;
 import com.letscode.projetobiblioteca.interfaces.UsuarioRepository;
-import com.letscode.projetobiblioteca.usuarios.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,6 @@ package com.letscode.projetobiblioteca;
 
 import com.letscode.projetobiblioteca.cadastros.*;
 import com.letscode.projetobiblioteca.consultas.Consulta;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

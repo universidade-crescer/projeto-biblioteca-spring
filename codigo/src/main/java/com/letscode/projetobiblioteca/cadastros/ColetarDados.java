@@ -2,7 +2,6 @@ package com.letscode.projetobiblioteca.cadastros;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-//import java.util.regex.Pattern;
 
 public class ColetarDados {
 
@@ -15,14 +14,12 @@ public class ColetarDados {
             try {
                 System.out.print(texto);
                 num = input.nextInt();
-                //input.nextLine(); // Esta linha está quebrando a aplicação
             } catch (InputMismatchException e) {
                 System.out.println("Erro! Insira um número inteiro dentro do intervalo para prosseguir.");
                 erro = !erro;
                 input.nextLine();
             }
         } while (erro || num < limiteMinimo || num > limiteMaximo);
-        // input.close(); // Esta linha está quebrando a aplicação
         return num;
     }
 
