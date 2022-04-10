@@ -5,10 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -16,9 +13,8 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Entity
 public class Livro {
+//    private Integer id;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private String nome;
     private Integer anoPublicacao;
     private String autor;
@@ -26,7 +22,7 @@ public class Livro {
     private Integer quantidade;
 
     public Livro(String nome, Integer anoPublicacao, String autor, String editora, Integer quantidade) {
-        this.id = -1;
+//        this.id = -1;
         this.nome = nome;
         this.anoPublicacao = anoPublicacao;
         this.autor = autor;
@@ -34,22 +30,9 @@ public class Livro {
         this.quantidade = quantidade;
     }
 
-    @Override
-    public String toString() {
-        return "Livro [anoPublicacao=" + anoPublicacao + ", autor=" + autor + ", editora=" + editora + ", id=" + id
-                + ", nome=" + nome + ", quantidade=" + quantidade + "]";
-    }
 
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public Livro(Integer id, String nome, Integer anoPublicacao, String autor, String editora) {
-        this.id = id;
+    public Livro(/*Integer id,*/ String nome, Integer anoPublicacao, String autor, String editora) {
+//        this.id = id;
         this.nome = nome;
         this.anoPublicacao = anoPublicacao;
         this.autor = autor;

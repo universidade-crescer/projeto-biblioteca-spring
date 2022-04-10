@@ -1,44 +1,35 @@
 package com.letscode.projetobiblioteca.consultas;
 
 
-import com.letscode.projetobiblioteca.cadastros.ColetarDados;
 import com.letscode.projetobiblioteca.emprestimo.Livro;
-import com.letscode.projetobiblioteca.interfaces.UsuarioRepository;
-import com.letscode.projetobiblioteca.usuarios.Usuario;
+import com.letscode.projetobiblioteca.interfaces.LivroRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
 public class Consulta implements com.letscode.projetobiblioteca.interfaces.Menus.MenuConsultarLivro {
-    private Usuario usuario;
-    private UsuarioRepository usuarioRepository;
+    private Livro livro;
+    private LivroRepository livroRepository;
 
     @Override
     public Livro procurarLivro() {
-        String nomeLivro = ColetarDados.coletaString("Insira o nome do livro: ");
-        // coleta as informações da query do banco de dados ("select * from livro where nome = '" + nomeLivro + "';")
-        // if(result != null)
-        //      return new Livro(...)
-        // return
-
+//        System.out.print("Insira o nome do livro: ");
+//        Scanner s = new Scanner(System.in);
+//        String nomeLivro = s.next();
         return null;
     }
 
-    public String procurarCpf(){
-//        String cpfUsuario = ColetarDados.coletaString("Insira o CPF da pessoa a ser buscada: ");
-
-       this.usuario.setCpf(ColetarDados.coletaString("Insira o CPF da pessoa a ser buscada: "));
-
-        if(this.usuarioRepository.existsById(this.usuario.getCpf())){
-            System.out.println("Entrou");
-            return this.usuario.getCpf();
+    public void pegaList(){
+        try {
+            System.out.println(livroRepository.findLivroByNome("teste"));
+        }catch (Exception e){
+            System.out.println("socorro");
         }
-        else{
-            System.out.println("Não entrou!");
-        }
-        // coleta as informações da query do banco de dados ("select * from usuario where cpf = '" + cpfUsuario + "';")
-        // if(result != null)
-        //      return new Usuario(...)
-        // return
-        return "Não entrou!";
-
     }
 
 }

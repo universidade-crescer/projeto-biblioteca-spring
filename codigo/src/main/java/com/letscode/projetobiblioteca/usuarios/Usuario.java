@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -50,10 +51,5 @@ public class Usuario {
         this.suspensao = suspensao;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario [celular=" + celular + ", cpf=" + cpf + ", email=" + email + ", nome=" + nome + ", numeroLivro="
-                + numeroLivro + ", suspensao=" + suspensao + "]";
-    }
 
 }

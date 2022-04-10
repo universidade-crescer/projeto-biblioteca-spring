@@ -31,7 +31,7 @@ public class ColetarDados {
         Scanner input = new Scanner(System.in);
         System.out.print(texto);
         str = input.nextLine();
-        System.out.println(str);
+//        System.out.println(str);
         return str;
     }
 }

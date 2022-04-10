@@ -1,6 +1,7 @@
 package com.letscode.projetobiblioteca;
 
 import com.letscode.projetobiblioteca.cadastros.*;
+import com.letscode.projetobiblioteca.consultas.Consulta;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -24,6 +25,7 @@ public class ProjetoBibliotecaApplication implements CommandLineRunner {
 
     private final CadastrarUsuario cadastrarUsuario ;
     private final CadastrarLivro cadastrarLivro;
+    private final Consulta consultar;
     private final CadastrarEmprestimo emprestimo;
     private final CadastrarDevolucao devolucao;
     private final RemoverUsuario remover;
@@ -44,7 +46,7 @@ public class ProjetoBibliotecaApplication implements CommandLineRunner {
                         System.out.println("Devolução...............5");
                         System.out.print("Remover usuário.........6\n-> ");
                         opcaoMenu = input.nextInt();
-                    } catch (InputMismatchException e) {
+                    }catch (InputMismatchException e) {
                         erro = true;
                         System.out.println("Erro! Insira um número dentro do intervalo mostrado no menu.");
                         input.next();
@@ -62,7 +64,7 @@ public class ProjetoBibliotecaApplication implements CommandLineRunner {
                         cadastrarLivro.criacaoLivro();
                         break;
                     case 3:
-
+                        consultar.pegaList();
                         break;
                     case 4:
                         emprestimo.digitarDados();
@@ -73,7 +75,6 @@ public class ProjetoBibliotecaApplication implements CommandLineRunner {
                         devolucao.devolver();
                         break;
                     case 6:
-                        remover.digitarDados();
                         remover.remover();
                         break;
                 }

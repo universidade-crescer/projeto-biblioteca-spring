@@ -6,31 +6,23 @@ import com.letscode.projetobiblioteca.usuarios.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Scanner;
+
 @Service
 @RequiredArgsConstructor
-public class RemoverUsuario implements com.letscode.projetobiblioteca.interfaces.Menus.RemoveUsuario, com.letscode.projetobiblioteca.interfaces.Menus.DigitarDados {
-
-    private String cpfUsuario;
-    private Usuario usuario;
+public class RemoverUsuario implements com.letscode.projetobiblioteca.interfaces.Menus.RemoveUsuario{
     private final UsuarioRepository usuarioRepository;
 
     @Override
     public void remover(){
-        // Query do banco de dados
-        // "delete from usuario where cpf = '" + this.usuario.getCpf() + "';"
-
-        if(usuarioRepository.existsById(usuario.getCpf())){
-            this.usuarioRepository.deleteById(cpfUsuario);
+        Scanner s = new Scanner(System.in);
+        System.out.println("Digite o CPF: ");
+        String cpf = s.next();
+        if(this.usuarioRepository.existsById(cpf)){
+            this.usuarioRepository.deleteById(cpf);
+        }else{
+            System.out.println("Deu erro!");
         }
-        else{
-            System.out.println("Usuário Inexistente");
-        }
-
     }
 
-    @Override
-    public void digitarDados(){
-        Consulta consulta = new Consulta();
-        this.usuario.setCpf(consulta.procurarCpf());
-    }
 }
