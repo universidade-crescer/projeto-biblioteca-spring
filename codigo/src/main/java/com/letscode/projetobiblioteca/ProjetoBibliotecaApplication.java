@@ -64,11 +64,11 @@ public class ProjetoBibliotecaApplication implements CommandLineRunner {
                         cadastrarLivro.criacaoLivro();
                         break;
                     case 3:
-                        consultar.pegaList();
+                        consultar.procurarLivro();
                         break;
                     case 4:
                         emprestimo.digitarDados();
-                        emprestimo.emprestar();
+                        emprestimo.criacaoEmprestimo();
                         break;
                     case 5:
                         devolucao.digitarDados();

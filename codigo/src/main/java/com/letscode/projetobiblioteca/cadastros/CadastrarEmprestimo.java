@@ -1,53 +1,82 @@
 package com.letscode.projetobiblioteca.cadastros;
 
-import com.letscode.projetobiblioteca.consultas.Consulta;
 import com.letscode.projetobiblioteca.emprestimo.Emprestimo;
 import com.letscode.projetobiblioteca.emprestimo.Livro;
+import com.letscode.projetobiblioteca.interfaces.BibliotecarioRepository;
 import com.letscode.projetobiblioteca.interfaces.EmprestimoRepository;
+import com.letscode.projetobiblioteca.interfaces.LivroRepository;
+import com.letscode.projetobiblioteca.interfaces.UsuarioRepository;
 import com.letscode.projetobiblioteca.usuarios.Bibliotecario;
 import com.letscode.projetobiblioteca.usuarios.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
 @Service
 @RequiredArgsConstructor
 public class CadastrarEmprestimo implements com.letscode.projetobiblioteca.interfaces.Menus.MenuEmprestimo, com.letscode.projetobiblioteca.interfaces.Menus.DigitarDados {
+
     private Emprestimo emprestimo;
-    private  final EmprestimoRepository emprestimoRepository;
+    private Bibliotecario bibliotecario;
+    private Livro livro;
+    private Usuario usuario;
+
+    private final EmprestimoRepository emprestimoRepository;
+    private final BibliotecarioRepository bibliotecarioRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final LivroRepository livroRepository;
+
+    Scanner s = new Scanner(System.in);
 
     public void criacaoEmprestimo() {
-        // TODO
-        // "insert into emprestimo values(emprestimo.getId(), emprestimo.getIdLivro(), emprestimo.getCpf(), emprestimo.getIdBibliotecario(),
-        // emprestimo.getDataRetirada(), emprestimo.getDataDevolucao(), emprestimo.getDataLimite())"
-
+        emprestar();
+        emprestimoRepository.save(emprestimo);
+        livroRepository.diminuirQuantidade(livro.getNome());
     }
 
     @Override
     public void emprestar(){
         LocalDate hoje = LocalDate.now();
-        this.emprestimo = new Emprestimo(hoje,hoje.plusDays(7));
+        this.emprestimo = new Emprestimo(emprestimo.getId(),livro,usuario,bibliotecario,hoje,null,hoje.plusDays(7));
     }
 
     @Override
     public void digitarDados(){
-//        Consulta consulta = new Consulta();
-//        Livro livro = consulta.procurarLivro();// Coletar livro
-//        Usuario usuario = consulta.procurarUsuario();// Coletar usuário
-//        Bibliotecario bibliotecario = /*Coleta do banco de dados o único bibliotecario*/null;
-//        if(livro != null && usuario != null){
-//            emprestimo.setLivro(livro);
-//            emprestimo.setUsuario(usuario);
-//            emprestimo.setBibliotecario(bibliotecario);
-//        }
-//        else{
-//            System.out.println("Livro ou usuário não existente.");
-//        }
-        
-        
-    }
+        usuario = new Usuario();
+        livro = new Livro();
 
+        System.out.println("Digite o nome do Bibliotecário: ");
+        String nomeBibliotecario = s.nextLine();
+
+        bibliotecario = new Bibliotecario(bibliotecarioRepository.findBibliotecarioId(nomeBibliotecario),
+                bibliotecarioRepository.findBibliotecarioEmail(nomeBibliotecario));
+
+        System.out.println("Digite o CPF do usuário: ");
+        String cpfUsuario = s.nextLine();
+
+        if(usuarioRepository.existsById(cpfUsuario)){
+            usuario.setCpf(cpfUsuario);
+
+            if(usuarioRepository.findSupensao(cpfUsuario)==0){
+                System.out.println("Nome do livro: ");
+                String nomeLivro = s.nextLine();
+
+                if(!this.livroRepository.existsById(nomeLivro)/*&& livroRepository.findQuantidade(nomeLivro)>=1*/){
+                    this.livro.setNome(nomeLivro);
+                }
+                else {
+                    System.out.println("Livro não existe ");
+                }
+            }
+            else{
+                System.out.println("Usuário suspenso temporariamente");
+            }
+        }
+        else {
+            System.out.println("Usuário não cadastrado");
+        }
+    }
 }

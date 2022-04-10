@@ -20,7 +20,7 @@ public interface Menus {
     }
 
     interface MenuConsultarLivro {
-        Livro procurarLivro();
+        void procurarLivro();
     }
 
     interface MenuEmprestimo {

@@ -22,7 +22,7 @@ public class Usuario {
     private String nome;
     private String email;
     private int numeroLivro;
-    private boolean suspensao;
+    private int suspensao;
 
     public Usuario(String cpf, String celular, String nome, String email) {
         this.cpf = cpf;
@@ -30,7 +30,7 @@ public class Usuario {
         this.nome = nome;
         this.email = email;
         this.numeroLivro = 1;
-        this.suspensao = false;
+        this.suspensao = 0;
     }
 
     public Usuario(String cpf, String celular, String nome, String email, int numeroLivro) {
@@ -39,16 +39,16 @@ public class Usuario {
         this.nome = nome;
         this.email = email;
         this.numeroLivro = numeroLivro;
-        this.suspensao = false;
+        this.suspensao = 0;
     }
 
-    public Usuario(String cpf, String celular, String nome, String email, int numeroLivro, boolean suspensao) {
+    public Usuario(String cpf, String celular, String nome, String email, int numeroLivro, int suspensao) {
         this.cpf = cpf;
         this.celular = celular;
         this.nome = nome;
         this.email = email;
         this.numeroLivro = numeroLivro;
-        this.suspensao = suspensao;
+        this.suspensao = 0;
     }
 
 

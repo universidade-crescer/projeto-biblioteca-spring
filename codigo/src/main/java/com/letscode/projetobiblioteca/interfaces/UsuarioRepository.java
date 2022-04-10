@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 
+    @Query("select u.suspensao from Usuario u where u.cpf=?1")
+    Integer findSupensao(String cpf);
 
 
 }

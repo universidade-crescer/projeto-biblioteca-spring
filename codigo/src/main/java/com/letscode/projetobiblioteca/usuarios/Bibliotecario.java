@@ -1,10 +1,10 @@
 package com.letscode.projetobiblioteca.usuarios;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.letscode.projetobiblioteca.interfaces.BibliotecarioRepository;
+import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,44 +15,18 @@ import javax.persistence.Id;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Bibliotecario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private String email;
 
 
-    public Bibliotecario(int id, String nome, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
+    public Bibliotecario(Integer bibliotecarioId, String bibliotecarioEmail) {
+        this.id = bibliotecarioId;
+        this.email = bibliotecarioEmail;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
 }
