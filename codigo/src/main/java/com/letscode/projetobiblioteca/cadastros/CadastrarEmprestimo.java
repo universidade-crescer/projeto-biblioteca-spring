@@ -33,6 +33,7 @@ public class CadastrarEmprestimo implements com.letscode.projetobiblioteca.inter
 
     public void criacaoEmprestimo() {
         emprestar();
+
         // TODO: 10/04/2022 Arrumar this.emprestimoRepository.save
 //        this.emprestimoRepository.save(emprestimo.getId(), emprestimo.getLivro().getNome(), emprestimo.getUsuario().getCpf(),emprestimo.getBibliotecario().getId(),
 //                emprestimo.getDataRetirada(), emprestimo.getDataDevolucao(), emprestimo.getDataLimite());

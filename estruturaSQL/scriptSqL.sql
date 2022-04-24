@@ -11,7 +11,7 @@ create table usuario(
 	nome varchar(100) ,
 	email varchar(100) ,
 	celular varchar(11),
-	suspensao int ,
+	suspensao boolean,
 	numero_livro int 
 );
 
@@ -40,7 +40,7 @@ create table emprestimo(
 	data_limite date not null
 );
 
-insert into bibliotecario values(1,'Jessé Haniel', 'jessehaniel@letscode.com');
-insert into livro values('nomeLivro','andre', 2021, 'teste', 5);
-insert into usuario values('1234','Rhuan', 'rhuan@gmail.com', '123', 0, 0);
-insert into emprestimo values(1, 'nomeLivro', '1234', 1, '2022-04-10',null, '2022-04-17' );
+insert into bibliotecario values(1,'Jesse', 'jessehaniel@letscode.com');
+insert into livro values('thewitcher','andre', 2021, 'teste', 5);
+insert into usuario values('1234','Rhuan', 'rhuan@gmail.com', '123', false, 0);
+insert into emprestimo values(1, 'thewitcher', '1234', 1, '2022-04-10',null, '2022-04-17' );

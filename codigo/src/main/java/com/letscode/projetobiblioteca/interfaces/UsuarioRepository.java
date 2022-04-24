@@ -13,7 +13,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
     Integer findSupensao(String cpf);
 
     @Modifying
-    @Query("select u.suspensao from Usuario u where u.cpf=?1")
+    @Query("update Usuario u set u.suspensao=true where u.cpf=?1")
     void aplicarSuspensao(String cpfUsuario);
 
 
