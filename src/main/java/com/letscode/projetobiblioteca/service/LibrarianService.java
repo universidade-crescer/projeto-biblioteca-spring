@@ -18,4 +18,8 @@ public class LibrarianService {
     public List<Librarian> getAll() {
         return this.librarianRepository.findAll();
     }
+
+    public Librarian save(Librarian librarian) {
+        return this.librarianRepository.save(librarian);
+    }
 }
