@@ -1,13 +1,16 @@
 package com.letscode.projetobiblioteca.model;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Table(name = "librarian")
 public class Librarian {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +27,7 @@ public class Librarian {
 
     @Column(name = "phone")
     private String phone;
-    
+
     @Column(name = "password")
     private String password;
 }
