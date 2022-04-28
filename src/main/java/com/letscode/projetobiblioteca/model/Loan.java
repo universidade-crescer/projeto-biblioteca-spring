@@ -1,5 +1,8 @@
 package com.letscode.projetobiblioteca.model;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity

@@ -2,6 +2,7 @@ package com.letscode.projetobiblioteca.service;
 
 import com.letscode.projetobiblioteca.model.Loan;
 import com.letscode.projetobiblioteca.repository.LoanRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
