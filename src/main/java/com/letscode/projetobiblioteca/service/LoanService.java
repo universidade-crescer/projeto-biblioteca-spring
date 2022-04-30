@@ -22,7 +22,7 @@ public class LoanService {
     }
 
     public Loan saveLoan(Loan loan) {
-        return this.loanRepository.save();
+        return this.loanRepository.save(loan);
     }
 
     public Optional<Loan> updateLoan(Long id, Loan loan) {
