@@ -22,8 +22,8 @@ public class Loan {
     private Book book;
 
     @ManyToOne
-    @JoinColumn(name = "id_librarian")
-    private Librarian librarian;
+    @JoinColumn(name = "id_student")
+    private Student student;
 
     @Column(name = "withdrawn_date")
     private LocalDate withdrawnDate;
@@ -35,6 +35,6 @@ public class Loan {
     private LocalDate deadline;
 
     @Column(name = "traffic_ticket")
-    private Double trafficTicket ;
+    private boolean trafficTicket;
 
 }
