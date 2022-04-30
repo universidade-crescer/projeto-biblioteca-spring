@@ -5,6 +5,7 @@ import com.letscode.projetobiblioteca.repository.LoanRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LoanService {
@@ -18,5 +19,22 @@ public class LoanService {
     public List<Loan> getAll () {
         return this.loanRepository.findAll();
 
+    }
+
+    public Loan saveLoan(Loan loan) {
+        return this.loanRepository.save();
+    }
+
+    public Optional<Loan> updateLoan(Long id, Loan loan) {
+        return this.loanRepository.findById(id)
+                .map(saveLoan -> {
+                    saveLoan.setTrafficTicket(loan.isTrafficTicket());
+                    Loan newLoan = loanRepository.save(saveLoan);
+                    return newLoan;
+                });
+    }
+
+    public void deleteLoan(Long id) {
+        this.loanRepository.deleteById(id);
     }
 }
