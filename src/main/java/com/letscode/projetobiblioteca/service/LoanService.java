@@ -28,7 +28,7 @@ public class LoanService {
     public Optional<Loan> updateLoan(Long id, Loan loan) {
         return this.loanRepository.findById(id)
                 .map(saveLoan -> {
-                    saveLoan.setTrafficTicket(loan.isTrafficTicket());
+                    saveLoan.setTrafficTicket(loan.getTrafficTicket());
                     Loan newLoan = loanRepository.save(saveLoan);
                     return newLoan;
                 });
