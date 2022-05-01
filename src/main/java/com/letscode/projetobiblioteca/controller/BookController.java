@@ -1,9 +1,11 @@
 package com.letscode.projetobiblioteca.controller;
 
+import com.letscode.projetobiblioteca.exception.BookNotFoundException;
 import com.letscode.projetobiblioteca.model.Book;
 import com.letscode.projetobiblioteca.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -42,5 +44,11 @@ public class BookController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBook(@PathVariable Long id){
         this.bookService.deleteBook(id);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity bookNotFound(BookNotFoundException e){
+        ResponseEntity response = new ResponseEntity(e.getMessage(),HttpStatus.NOT_FOUND);
+        return response;
     }
 }

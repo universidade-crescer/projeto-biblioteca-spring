@@ -1,10 +1,13 @@
 package com.letscode.projetobiblioteca.controller;
 
+import com.letscode.projetobiblioteca.exception.BookNotFoundException;
+import com.letscode.projetobiblioteca.exception.TicketTrafficException;
 import com.letscode.projetobiblioteca.model.Book;
 import com.letscode.projetobiblioteca.model.Loan;
 import com.letscode.projetobiblioteca.service.LoanService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -43,6 +46,12 @@ public class LoanController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteLoan(@PathVariable Long id){
         this.loanService.deleteLoan(id);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity ticketTrafficDeadline(TicketTrafficException e){
+        ResponseEntity response = new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
+        return response;
     }
 
 }
