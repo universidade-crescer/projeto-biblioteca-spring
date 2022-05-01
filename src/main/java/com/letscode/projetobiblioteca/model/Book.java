@@ -3,6 +3,7 @@ package com.letscode.projetobiblioteca.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -30,4 +31,5 @@ public class Book {
 
     @Column(name = "quantity")
     private Integer quantity;
+
 }

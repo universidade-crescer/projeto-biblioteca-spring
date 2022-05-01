@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @NoArgsConstructor
@@ -27,34 +28,14 @@ public class Loan {
     private Student student;
 
     @Column(name = "withdrawn_date")
-    private LocalDate withdrawnDate;
+    private LocalDate withdrawnDate = LocalDate.now();
 
     @Column(name = "return_date")
-    private LocalDate returnDate;
+    private Date returnDate;
 
     @Column(name = "deadline")
-    private LocalDate deadline;
+    private Date deadline;
 
     @Column(name = "traffic_ticket")
     private Boolean trafficTicket;
-
-    @JsonProperty("book_id")
-    private void unpackNestedBook(Long book_id) {
-        this.book = new Book();
-        book.setId(book_id);
-        book.getName();
-        book.getYearOfPublication();
-        book.getAuthor();
-        book.getPublishingCompany();
-        book.getQuantity();
-    }
-
-    @JsonProperty("student_id")
-    private void unpackNestedStudent(Long student_id) {
-        this.student = new Student();
-        student.setId(student_id);
-        student.getName();
-        student.getPhone();
-        student.getRegistration();
-    }
 }
