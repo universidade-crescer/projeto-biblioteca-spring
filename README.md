@@ -71,3 +71,10 @@ DER do banco de dados:
 | POST         | `/loan`                 | Cria/cadastra um novo empréstimo     |
 | PUT          | `/loan/{id}`            | Altera informações de um empréstimo  |
 | DELETE       | `/loan/{id}`            | Deleta um empréstimo                 |
+
+
+## 🚧 Melhorias para o futuro (Em construção):
+
+* Ainda estamos inserindo a rota de login com JWT
+* Adicionar migrations com flyway.
+* Implementar o front-end na aplicação.
