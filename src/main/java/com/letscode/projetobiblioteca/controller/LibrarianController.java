@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/librarian")
@@ -34,6 +35,19 @@ public class LibrarianController {
     @ResponseStatus(HttpStatus.CREATED)
     public Librarian save(@RequestBody @Valid Librarian librarian) {
         return this.librarianService.save(librarian);
+    }
+
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Librarian> updateLibrarian(@PathVariable Long id, @RequestBody @Valid Librarian librarian) {
+        return this.librarianService.updateLibrarian(id, librarian);
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteLibrarian(@PathVariable Long id) {
+        this.librarianService.deleteLibrarian(id);
+
     }
 
     @PostMapping("/student")

@@ -1,8 +1,7 @@
 package com.letscode.projetobiblioteca.controller;
 
-import com.letscode.projetobiblioteca.exception.BookNotFoundException;
+
 import com.letscode.projetobiblioteca.exception.TicketTrafficException;
-import com.letscode.projetobiblioteca.model.Book;
 import com.letscode.projetobiblioteca.model.Loan;
 import com.letscode.projetobiblioteca.service.LoanService;
 import lombok.extern.slf4j.Slf4j;

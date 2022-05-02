@@ -2,8 +2,10 @@ package com.letscode.projetobiblioteca.model;
 
 import lombok.*;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+
 
 @Entity
 @NoArgsConstructor
@@ -36,4 +38,5 @@ public class Librarian {
     @Column(name = "password")
     @NotBlank(message = "Write your password.")
     private String password;
+
 }
