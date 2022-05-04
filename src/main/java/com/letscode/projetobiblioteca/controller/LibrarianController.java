@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
@@ -62,8 +63,8 @@ public class LibrarianController {
 
     @PostMapping("/student")
     @ResponseStatus(HttpStatus.CREATED)
-    public Student saveStudent(@RequestBody @Valid Student student){
-        return this.studentService.saveStudent(student);
+    public ResponseEntity saveStudent(@RequestBody @Valid Student student, @CookieValue("jwt") String jwt){
+        return this.studentService.saveStudent(student, jwt);
     }
 
     @GetMapping("/student")
