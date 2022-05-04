@@ -1,14 +1,18 @@
 package com.letscode.projetobiblioteca.controller;
 
 import com.letscode.projetobiblioteca.model.Librarian;
+import com.letscode.projetobiblioteca.model.Login;
 import com.letscode.projetobiblioteca.model.Student;
 import com.letscode.projetobiblioteca.service.LibrarianService;
 import com.letscode.projetobiblioteca.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +39,12 @@ public class LibrarianController {
     @ResponseStatus(HttpStatus.CREATED)
     public Librarian save(@RequestBody @Valid Librarian librarian) {
         return this.librarianService.save(librarian);
+    }
+
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity login(@RequestBody Login login, HttpServletResponse response) {
+        return this.librarianService.login(login, response);
     }
 
     @PutMapping("{id}")
