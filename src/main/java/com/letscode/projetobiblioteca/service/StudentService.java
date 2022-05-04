@@ -2,17 +2,14 @@ package com.letscode.projetobiblioteca.service;
 
 import com.letscode.projetobiblioteca.model.Student;
 import com.letscode.projetobiblioteca.repository.StudentRepository;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CookieValue;
 
 import javax.crypto.SecretKey;
-import javax.ws.rs.container.ContainerRequestContext;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -32,18 +29,28 @@ public class StudentService {
             return ResponseEntity.status(401).body("Unauthenticated");
         }
 
-        
+
         Jwts.parserBuilder()
                 .setSigningKey(CHAVE)
                 .build()
                 .parseClaimsJws(jwt).getBody();
 
-        Student saveStudent = studentRepository.save(student);
+        Student saveStudent = this.studentRepository.save(student);
         ResponseEntity response = new ResponseEntity(saveStudent, HttpStatus.CREATED);
         return response;
     }
 
-    public List<Student> getAllStudent() {
-        return this.studentRepository.findAll();
+    public ResponseEntity getAllStudent(@CookieValue("jwt") String jwt) {
+        if(jwt == null) {
+            ResponseEntity responseError = ResponseEntity.status(401).body("Unauthenticated");
+            return responseError;
+        }
+        Jwts.parserBuilder()
+                .setSigningKey(CHAVE)
+                .build()
+                .parseClaimsJws(jwt).getBody();
+        List<Student> getStudents = this.studentRepository.findAll();
+        ResponseEntity response = new ResponseEntity(getStudents, HttpStatus.OK);
+         return response;
     }
 }

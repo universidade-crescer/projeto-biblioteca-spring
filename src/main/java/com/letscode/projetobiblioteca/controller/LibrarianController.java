@@ -69,7 +69,7 @@ public class LibrarianController {
 
     @GetMapping("/student")
     @ResponseStatus(HttpStatus.OK)
-    public List<Student> getAllStudent(){
-        return this.studentService.getAllStudent();
+    public ResponseEntity getAllStudent(@CookieValue("jwt") String jwt){
+        return this.studentService.getAllStudent(jwt);
     }
 }
